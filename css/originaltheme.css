@@ -1,0 +1,196 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+--ink: #1a1714;
+--mist: #f0ece6;
+--dust: #c9bfb0;
+--cold: #8a9baa;
+--warm: #b8956a;
+}
+
+html { background: var(--mist); }
+
+body {
+font-family: 'Cormorant Garamond', Georgia, serif;
+color: var(--ink);
+background: var(--mist);
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* Grain texture overlay */
+body::before {
+content: '';
+position: fixed;
+inset: 0;
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+pointer-events: none;
+z-index: 100;
+opacity: 0.6;
+}
+
+.page {
+max-width: 680px;
+margin: 0 auto;
+padding: 0 2rem;
+}
+
+/* Header */
+header {
+padding: 5rem 0 2rem;
+opacity: 0;
+animation: fadeUp 1.2s ease 0.2s forwards;
+}
+
+.label {
+font-family: 'Noto Serif JP', serif;
+font-weight: 200;
+font-size: 0.7rem;
+letter-spacing: 0.25em;
+color: var(--cold);
+text-transform: uppercase;
+display: block;
+margin-bottom: 2rem;
+}
+
+h1 {
+font-size: clamp(3rem, 8vw, 5.5rem);
+font-weight: 300;
+line-height: 1;
+letter-spacing: -0.02em;
+color: var(--ink);
+}
+
+h1 em {
+font-style: italic;
+color: var(--warm);
+display: block;
+}
+
+.subtitle {
+margin-top: 1.5rem;
+font-size: 0.85rem;
+color: var(--dust);
+letter-spacing: 0.08em;
+font-weight: 300;
+}
+
+/* Divider */
+.divider {
+display: flex;
+align-items: center;
+gap: 1rem;
+margin: 3rem 0;
+opacity: 0;
+animation: fadeUp 1s ease 0.6s forwards;
+}
+
+.divider-line {
+flex: 1;
+height: 1px;
+background: linear-gradient(to right, transparent, var(--dust), transparent);
+}
+
+.divider-dot {
+width: 4px;
+height: 4px;
+border-radius: 50%;
+background: var(--warm);
+}
+
+/* Body text */
+.essay {
+opacity: 0;
+animation: fadeUp 1s ease 0.9s forwards;
+}
+
+p {
+font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+line-height: 1.85;
+font-weight: 300;
+color: #2d2926;
+margin-bottom: 1.8em;
+}
+
+p.lead {
+font-size: clamp(1.25rem, 3vw, 1.5rem);
+line-height: 1.7;
+font-style: italic;
+color: var(--ink);
+font-weight: 400;
+}
+
+.pullquote {
+border-left: 1px solid var(--warm);
+padding: 0.5rem 0 0.5rem 2rem;
+margin: 2.5rem 0;
+}
+
+.pullquote p {
+font-size: clamp(1.15rem, 3vw, 1.4rem);
+font-style: italic;
+color: var(--warm);
+margin: 0;
+line-height: 1.6;
+}
+
+.cold-text {
+color: var(--cold);
+font-style: italic;
+}
+
+/* Final section */
+.coda {
+margin-top: 4rem;
+padding-top: 3rem;
+border-top: 1px solid var(--dust);
+}
+
+.coda p {
+font-size: 0.95rem;
+color: var(--dust);
+line-height: 1.7;
+}
+
+/* Footer */
+footer {
+padding: 4rem 0 5rem;
+opacity: 0;
+animation: fadeUp 1s ease 1.4s forwards;
+}
+
+footer p {
+font-size: 0.75rem;
+color: var(--dust);
+letter-spacing: 0.12em;
+text-transform: uppercase;
+font-family: 'Noto Serif JP', serif;
+font-weight: 200;
+margin: 0;
+}
+
+/* Floating kanji decoration */
+.kanji {
+position: fixed;
+top: 12%;
+right: -1rem;
+font-family: 'Noto Serif JP', serif;
+font-size: 12rem;
+font-weight: 200;
+color: rgba(180, 160, 140, 0.06);
+writing-mode: vertical-rl;
+pointer-events: none;
+user-select: none;
+line-height: 1;
+z-index: 0;
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(24px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+.kanji { display: none; }
+header { padding: 3rem 0 1.5rem; }
+}
