@@ -62,11 +62,51 @@ createStars();
 // Splash screen handler
 const splashScreen = document.querySelector('.splash-screen');
 const splashStar = document.querySelector('.splash-star');
+const splashText = document.querySelector('.splash-text');
 const bgMusic = document.getElementById('bgMusic');
 
 splashStar.addEventListener('click', () => {
-  splashScreen.classList.add('hidden');
+  splashStar.classList.add('grow');
+  splashText.classList.add('fade');
+  splashScreen.classList.add('reveal');
   bgMusic.play();
+  
+  // Remove splash screen after animations complete
+  setTimeout(() => {
+    splashScreen.classList.add('hidden');
+  }, 1800);
+});
+
+// Footer star to return to splash screen
+const footerStar = document.querySelector('.footer-star');
+footerStar.addEventListener('click', () => {
+  splashScreen.classList.remove('hidden');
+  splashScreen.classList.add('fadeIn');
+  splashStar.classList.remove('grow');
+  splashText.classList.remove('fade');
+  splashScreen.classList.remove('reveal');
+  bgMusic.pause();
+  bgMusic.currentTime = 0;
+  
+  // Reset animation classes after animation completes
+  setTimeout(() => {
+    splashScreen.classList.remove('fadeIn');
+  }, 800);
+});
+
+// Mute button functionality
+const muteButton = document.querySelector('.mute-button');
+let isMuted = false;
+
+muteButton.addEventListener('click', () => {
+  isMuted = !isMuted;
+  muteButton.classList.toggle('muted');
+  
+  if (isMuted) {
+    bgMusic.pause();
+  } else {
+    bgMusic.play();
+  }
 });
 
 const initialOpacity = 0.15;

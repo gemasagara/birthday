@@ -37,20 +37,110 @@ visibility: hidden;
 pointer-events: none;
 }
 
+.splash-screen.fadeIn {
+animation: splashFadeIn 0.8s ease forwards;
+}
+
+.splash-screen.reveal {
+animation: fadeOutScreen 1s ease-out 0.8s forwards;
+}
+
+.splash-star.grow {
+animation: growStar 5s ease-out forwards;
+}
+
+.splash-text.fade {
+animation: fadeOutText 0.4s ease-out forwards;
+}
+
+@keyframes growStar {
+from {
+  transform: rotate(var(--star-rotation)) scale(1);
+}
+to {
+  transform: rotate(var(--star-rotation)) scale(80);
+}
+}
+
+@keyframes fadeOutText {
+from {
+  opacity: 1;
+}
+to {
+  opacity: 0;
+}
+}
+
+@keyframes splashFadeIn {
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
+}
+
+@keyframes fadeOutScreen {
+from {
+  opacity: 1;
+  background: var(--mist);
+}
+to {
+  opacity: 0;
+  background: var(--mist);
+}
+}
+
+.splash-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+}
+
+.splash-bottom-text {
+position: absolute;
+bottom: 2rem;
+left: 2rem;
+right: 2rem;
+font-size: 1.2rem;
+color: var(--cold);
+line-height: 1.6;
+text-align: center;
+opacity: 0;
+animation: fadeIn 1s ease 0.5s forwards;
+margin: 0;
+}
+
+.splash-text {
+width: 100%;
+height: auto;
+animation: fadeIn 1s ease 0.5s forwards;
+opacity: 0;
+}
+
 .splash-star {
+margin: 0;
 width: clamp(80px, 20vmin, 200px);
 height: clamp(80px, 20vmin, 200px);
-background-image: url('../star-svgrepo-com.svg');
+background-image: url('../star-alt.svg');
 background-size: contain;
 background-repeat: no-repeat;
 background-position: center;
 cursor: pointer;
 animation: splashPulse 2s ease-in-out infinite;
 transition: transform 0.3s ease;
+--star-rotation: 0deg;
 }
 
 .splash-star:hover {
-transform: scale(1.1);
+transform: scale(1.1) rotate(15deg);
+--star-rotation: 15deg;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
 }
 
 @keyframes splashPulse {
@@ -64,7 +154,7 @@ position: fixed;
 pointer-events: none;
 user-select: none;
 z-index: 0;
-background-image: url('../star-svgrepo-com.svg');
+background-image: url('../star-alt.svg');
 background-size: contain;
 background-repeat: no-repeat;
 opacity: 0.15;
@@ -98,6 +188,30 @@ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='ht
 pointer-events: none;
 z-index: 100;
 opacity: 0.6;
+}
+
+.mute-button {
+position: absolute;
+top: 3rem;
+right: 2rem;
+width: 24px;
+height: 24px;
+background-image: url('../volume_onalt.svg');
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
+cursor: pointer;
+animation: fadeUpHalf 1s ease 1.4s forwards;
+transition: opacity 0.3s ease, background-image 0.3s ease;
+z-index: 500;
+}
+
+.mute-button.muted {
+background-image: url('../volume_off.svg');
+}
+
+.mute-button:hover {
+opacity: 0.8;
 }
 
 .page {
@@ -230,6 +344,13 @@ opacity: 0;
 animation: fadeUp 1s ease 1.4s forwards;
 }
 
+.footer-content {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1.5rem;
+}
+
 footer p {
 font-size: 0.75rem;
 color: var(--dust);
@@ -238,6 +359,24 @@ text-transform: uppercase;
 font-family: 'Noto Serif JP', serif;
 font-weight: 200;
 margin: 0;
+}
+
+.footer-star {
+width: 24px;
+height: 24px;
+background-image: url('../star-alt.svg');
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
+cursor: pointer;
+transition: transform 0.3s ease;
+--star-rotation: 0deg;
+opacity: 0.5;
+}
+
+.footer-star:hover {
+transform: rotate(15deg) scale(1.1);
+--star-rotation: 15deg;
 }
 
 /* Floating kanji decoration */
@@ -261,6 +400,11 @@ z-index: 0;
 @keyframes fadeUp {
 from { opacity: 0; transform: translateY(24px); }
 to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUpHalf {
+from { opacity: 0; transform: translateY(24px); }
+to   { opacity: 0.5; transform: translateY(0); }
 }
 
 @media (max-width: 600px) {

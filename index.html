@@ -15,12 +15,26 @@
 </audio>
 
 <div class="splash-screen">
-  <div class="splash-star"></div>
+  <div class="splash-container">
+    <svg class="splash-text" width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="curve" d="M 20,60 Q 100,20 180,60" fill="none"/>
+      </defs>
+      <text font-family="'Noto Serif JP', serif" font-size="16" font-weight="300" letter-spacing="0.08em" fill="#7C5AA8" text-transform="uppercase">
+        <textPath href="#curve" startOffset="50%" text-anchor="middle">
+          click the star
+        </textPath>
+      </text>
+    </svg>
+    <div class="splash-star"></div>
+  </div>
+  <p class="splash-bottom-text">her16thbirday</p>
 </div>
 
 <!--<div class="kanji">ハッピーエンド</div>-->
 
 <div class="page">
+  <div class="mute-button"></div>
 
   <header>
     <span class="label">back number — a reflection</span>
@@ -81,7 +95,10 @@
   </article>
 
   <footer>
-    <p>written with memory &amp; gratitude</p>
+    <div class="footer-content">
+      <p>written with memory &amp; gratitude</p>
+      <div class="footer-star"></div>
+    </div>
   </footer>
 
 </div>
