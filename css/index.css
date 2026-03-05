@@ -46,19 +46,28 @@ animation: fadeOutScreen 1s ease-out 0.8s forwards;
 }
 
 .splash-star.grow {
-animation: growStar 5s ease-out forwards;
+animation: resetRotation 0.4s ease-out forwards, growStar 5s ease-out 0.4s forwards;
 }
 
 .splash-text.fade {
 animation: fadeOutText 0.4s ease-out forwards;
 }
 
-@keyframes growStar {
+@keyframes resetRotation {
 from {
   transform: rotate(var(--star-rotation)) scale(1);
 }
 to {
-  transform: rotate(var(--star-rotation)) scale(80);
+  transform: rotate(0deg) scale(1);
+}
+}
+
+@keyframes growStar {
+from {
+  transform: rotate(0deg) scale(1);
+}
+to {
+  transform: rotate(0deg) scale(80);
 }
 }
 
