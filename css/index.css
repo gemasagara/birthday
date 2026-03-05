@@ -46,28 +46,19 @@ animation: fadeOutScreen 1s ease-out 0.8s forwards;
 }
 
 .splash-star.grow {
-animation: resetRotation 0.4s ease-out forwards, growStar 5s ease-out 0.4s forwards;
+animation: growStar 5s ease-out forwards;
 }
 
 .splash-text.fade {
 animation: fadeOutText 0.4s ease-out forwards;
 }
 
-@keyframes resetRotation {
+@keyframes growStar {
 from {
   transform: rotate(var(--star-rotation)) scale(1);
 }
 to {
-  transform: rotate(0deg) scale(1);
-}
-}
-
-@keyframes growStar {
-from {
-  transform: rotate(0deg) scale(1);
-}
-to {
-  transform: rotate(0deg) scale(80);
+  transform: rotate(var(--star-rotation)) scale(80);
 }
 }
 
@@ -112,7 +103,7 @@ position: absolute;
 bottom: 2rem;
 left: 2rem;
 right: 2rem;
-font-size: 1.2rem;
+font-size: 0.75rem;
 color: var(--cold);
 line-height: 1.6;
 text-align: center;
